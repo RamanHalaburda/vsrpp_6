@@ -23,9 +23,35 @@ namespace vsrpp_6
             равенство двух комплексных чисел. Переопределить метод ToString() для
             комплексного числа. Протестировать на простом примере.
         */
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Double aRe = 0, aIm = 0, bRe = 0, bIm = 0;
+
+            if (Double.TryParse(textBox1.Text, out aRe)
+                && Double.TryParse(textBox2.Text, out aIm)
+                && Double.TryParse(textBox3.Text, out bRe)
+                && Double.TryParse(textBox4.Text, out bIm))
+            { 
+                ComplexNumber A = new ComplexNumber(aRe, aIm);
+                ComplexNumber B = new ComplexNumber(bRe, bIm);
+
+                ComplexNumber sum = A + B;
+                textBox5.Text = sum.ToString();
+
+                ComplexNumber mult = A * B;
+                textBox6.Text = mult.ToString();
+
+                ComplexNumber sub = A - B;
+                textBox7.Text = sub.ToString();
+
+                Boolean isEqual = A == B;
+                textBox8.Text = isEqual.ToString();
+            }
+            else
+            {
+                throw new FormatException("wrong format of input values!");
+            }
         }
     }
 }
